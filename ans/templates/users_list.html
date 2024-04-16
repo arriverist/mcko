@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Works log</h1>
+    <form style="display:inline;" action="http://127.0.0.1:8080/my_desk">
+        <input type="submit" value='К тикетам' />
+    </form>
+    {% for item in temp %}
+        <h4>Сотрудник #{{item[0]}}</h4>
+        <table style="background-color:#A4A69C;">
+        <tr style="background-color:#4D5D53;"><th>Title of activity</th><th>Team leader</th><th>Duration</th><th>Hazard</th><th>List of collaborators</th><th>Is finished</th></tr>
+            <tr><td>{{item[1]}}</td><td>{{item[2]}}</td><td>{{item[3]}}</td><td>{{item[7]}}</td><td>{{item[4]}}</td><td style="background-color:#66FF66;">{{item[5]}}</td></tr>
+        </table>
+        {% if name != 'Незарегистрированный пользователь' %}
+            {% if item[6] == needid %}
+                <form style="display:inline;" action="http://127.0.0.1:8080/edit_job/{{ item[0] }}">
+                    <input type="submit" value='Edit' />
+                </form>
+                <form style="display:inline;" action="http://127.0.0.1:8080/delete_job/{{ item[0] }}">
+                    <input type="submit" value='Delete' />
+                </form>
+            {% elif needid == 1 %}
+                <form style="display:inline;" action="http://127.0.0.1:8080/edit_job/{{ item[0] }}">
+                    <input type="submit" value='Edit' />
+                </form>
+                <form style="display:inline;" action="http://127.0.0.1:8080/delete_job/{{ item[0] }}">
+                    <input type="submit" value='Delete' />
+                </form>
+            {% endif %}
+        {% endif %}
+        <h2></h2>
+    {% endfor %}
+{% endblock %}

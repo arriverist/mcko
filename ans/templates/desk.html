@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block content %}
+<style>
+table {
+  background-color: #0e2b0e;
+  width: 100%;
+  border-radius: 23px;
+  border-collapse: separate;
+}
+
+td:first-child, th:first-child {
+     border-left: none;
+}
+
+tr {
+    border-radius: 50px;
+    background-color: #7a7a7a;
+}
+
+td {
+    width: 20%;
+    text-align: center;
+    vertical-align: middle;
+    align:center;
+    cursor: pointer;
+}
+
+th:first-child {
+border-top-left-radius: 50px;
+}
+th:last-child {
+border-top-right-radius: 50px;
+border-right: none;
+}
+
+tr:last-child td:first-child {
+border-radius: 0 0 0 50px;
+}
+
+tr:last-child td:last-child {
+border-radius: 0 0 50px 0;
+}
+
+tr td:last-child {
+border-right: none;
+}
+</style>
+    <table>
+        <tr style="background-color: #559a20;"><th>ID</th><th>Проблема</th><th>Заказчик</th><th>Продукт</th><th>Время создания</th></tr>
+        {% for ticket in news %}
+            <tr><td onclick={{ticket[5]}} >{{ ticket[0] }}</td><td onclick={{ ticket[5] }} >{{ ticket[1] }}</td><td onclick={{ ticket[5] }} >{{ ticket[2] }}</td><td onclick="document.location='http://127.0.0.1:8080/login'">{{ ticket[3] }}</td><td onclick="document.location='http://127.0.0.1:8080/login'">{{ ticket[4] }}</td></tr>
+        {% endfor %}
+    </table>
+{% endblock %}
