@@ -80,50 +80,26 @@ async def fourth_response(update, context):
 
 
 async def fifth_response(update, context):
-    global data
-    data.append(update.message.text)
-    logger.info(data[-1])
-    await update.message.reply_text("Хотите добавить картинки?(Да/Нет)", reply_markup=markup)
-    return 6
-
-
-async def sixth_response(update, context):
     global data, chat_id
     data.append(update.message.text)
     logger.info(data[-1])
-    if data[-1].lower() == 'да':
-        await update.message.reply_text("Пришлите картинку")
-        return 7
-    elif data[-1].lower() == 'нет':
-        await update.message.reply_text("Спасибо за отзыв!"
-                                        "\nМы постараемся решить вашу проблему как можно быстрее."
-                                        "\nВсего доброго!")
-        post('http://127.0.0.1:8080/api/add_ticket',
-             json={'name': data[0],
-                   'email': data[1],
-                   'product_name': data[2],
-                   'problem_name': data[3],
-                   'problem_full': data[4],
-                   'is_finished': False,
-                   'worker': 'Не назначен',
-                   'chat_id': chat_id,
-                   'last_id': update.message.id
-                   }
-             )
-        data = []
-        chat_id = ''
-        return ConversationHandler.END
-    await update.message.reply_text("Неправильный ввод. Хоите приложить картинку? (Да/Нет)")
-    return 6
-
-
-async def seventh_response(update, context):
-    raw = update.message.photo[2].file_id
-    path = raw + ".jpg"
-    file_info = bot.get_file(raw)
-    downloaded_file = bot.download_file(file_info.file_path)
-    with open(path, 'wb') as new_file:
-        new_file.write(downloaded_file)
+    await update.message.reply_text("Спасибо за отзыв!"
+                                    "\nМы постараемся решить вашу проблему как можно быстрее."
+                                    "\nВсего доброго!")
+    post('http://127.0.0.1:8080/api/add_ticket',
+         json={'name': data[0],
+               'email': data[1],
+               'product_name': data[2],
+               'problem_name': data[3],
+               'problem_full': data[4],
+               'is_finished': False,
+               'worker': 'Не назначен',
+               'chat_id': chat_id,
+               'last_id': update.message.id
+               }
+         )
+    data = []
+    chat_id = ''
     return ConversationHandler.END
 
 
@@ -145,13 +121,9 @@ def main() -> None:
             3: [MessageHandler(filters.TEXT & ~filters.COMMAND, third_response)],
             4: [MessageHandler(filters.TEXT & ~filters.COMMAND, fourth_response)],
             5: [MessageHandler(filters.TEXT & ~filters.COMMAND, fifth_response)],
-            6: [MessageHandler(filters.TEXT & ~filters.COMMAND, sixth_response)],
-            7: [MessageHandler(filters.TEXT & ~filters.COMMAND, seventh_response)],
         },
         fallbacks=[CommandHandler(['stop'], stop)]
     )
-    text_handler = MessageHandler(filters.TEXT, send)
-    application.add_handler(text_handler)
     application.add_handler(conv_handler)
     application.add_handler(CommandHandler("send_request", start))
     application.add_handler(CommandHandler("stop", stop))

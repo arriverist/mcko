@@ -89,8 +89,6 @@ def beloved_ticket(ticket_number):
             data = json.load(json_file)['data']
     else:
         data = []
-    print([ticket["last_id"], ticket["chat_id"], ticket["problem_name"], ticket["name"],])
-    print(get(f'http://api.telegram.org/bot{token}/getUpdates?offset={str(ticket["last_id"])}').json(), f'http://api.telegram.org/bot{token}/getUpdates?offset={str(ticket["last_id"])}')
     for el in get(f'http://api.telegram.org/bot{token}/getUpdates?offset={str(ticket["last_id"])}').json()['result']:
         print(el)
         print(el['message']['chat']['id'], ticket['chat_id'])
