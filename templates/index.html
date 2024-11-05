@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/styles.css') }}">
+
+</head>
+<body>
+    Имя<input id="name">
+    Фамилия<input id="surname">
+    Отчество<input id="pmic">
+    Логин<input id="login">
+    <button id="remember">Запомнить меня</button>
+    <button id="BtnLog">Войти</button>
+    <img src="{{ url_for('static',filename='img/butterflies_small.png') }}"
+         style="position: absolute; height: 60vh; width: 28vw; left: 60vw; top: 7vh">
+    <p>{{ form.submit(type="submit", class="btn btn-primary", style="color: #000000; background-color: #559a20; border-color: #7a7a7a; border-radius: 0.25rem; outline: 0; box-shadow: 0 0 0 0.3rem rgba(180, 180, 180, 0.8);") }}</p>
+    <script type="text/javascript" src="{{ url_for('static', filename='javascript/script.js') }}"></script>
+</body>
+</html>

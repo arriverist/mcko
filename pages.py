@@ -2,20 +2,23 @@ from flask import Flask, render_template, redirect, abort
 from requests import get, post
 from data import db_session, vocord_tickets_api
 from forms.user import RegisterForm, LoginForm, SendForm
+
+# import database forms
 from data.users import User
-# from forms.ticket import TicketForm
 from data.tickets import Ticket
-from flask_login import LoginManager, login_required
-from flask_login import login_user, logout_user
+
+from flask_login import LoginManager, login_required, login_user, logout_user
+
 import os
 import json
+
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'yandexlyceum_secret_key'
-db_session.global_init("db/vocord.sqlite")
+app.config['SECRET_KEY'] = 'rvljPOVa3q6RP7aIqJwUnPLobiCh2098'
+db_session.global_init("db/2098_mcko.sqlite")
 login_manager = LoginManager()
 login_manager.init_app(app)
-name = None
-admin = False
+
+user = {"name": None, "is_teacher": False}
 
 
 @login_manager.user_loader
@@ -27,9 +30,9 @@ def load_user(user_id):
 @app.route('/logout')
 @login_required
 def logout():
-    global name, admin
+    global user
     logout_user()
-    name, admin = None, False
+    user = {"name": None, "is_teacher": False}
     return redirect("/")
 
 

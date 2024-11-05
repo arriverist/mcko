@@ -1,0 +1,31 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    padding: 15px;
+    gap: 20px;
+    margin-top: 70px;
+    margin-left: 100px;
+    background-color: rgba(91, 93, 232, 0.25);
+}
+
+input {
+    width: 600px;
+    height: 30px;
+    background-color: rgb(159, 159, 234);
+
+}
+
+#remember {
+    background-color:white;
+}
+
+#BtnLog {
+    width: 150px;
+    height: 45px;
+    background-color: rgba(22, 15, 88, 0.4);
+    color: white;
+}

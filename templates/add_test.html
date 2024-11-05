@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+        <p>
+            {{ form.name.label }}<br>
+            <div style=""> {{ form.name(class="form-control", type="name", style="color: #000000; background-color: #559a20; border-color: #7a7a7a; border-radius: 0.25rem; outline: 0; box-shadow: 0 0 0 0.3rem rgba(180, 180, 180, 0.8);") }}</div><br>
+            {% for error in form.name.errors %}
+                <div class="alert alert-danger" role="alert">
+                    {{ error }}
+                </div>
+            {% endfor %}
+        </p>
+  <button onclick="add()">Add</button>
+  <button onclick="remove()">remove</button>
+  <div id="new_chq"></div>
+                <p>{{ form.submit(type="submit", class="btn btn-primary", style="color: #000000; background-color: #559a20; border-color: #7a7a7a; border-radius: 0.25rem; outline: 0; box-shadow: 0 0 0 0.3rem rgba(180, 180, 180, 0.8);") }}</p>
+
+  <input type="hidden" value="1" id="total_chq">
+
+  <script src="{{ url_for('static', filename='javascript/add_test.js') }}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+            <script type="text/javascript">
+                function add(){
+                    var new_chq_no = parseInt($('#total_chq').val())+1;
+                    var new_input="<p> {{ form.tasks[0].label }} <br>\n<div>\n {{ form.tasks[0](class_='form-control', type='1', style='color: #000000; background-color: #559a20; border-color: #7a7a7a; border-radius: 0.25rem; outline: 0; box-shadow: 0 0 0 0.3rem rgba(180, 180, 180, 0.8);') }}</div><br>{% for error in form.tasks[0].errors %}<div class='alert alert-danger' role='alert'>{{ error }}</div>{% endfor %}</p>";
+                    $('#new_chq').append(new_input);
+                    $('#total_chq').val(new_chq_no);
+                }
+            </script>
+</body>
+</html>

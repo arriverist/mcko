@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <form action="" method="post">
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.surname.label }}<br>
+            <div style=""> {{ form.surname(class="form-control", type="Фамилия", style="color: #000000; background-color: #559a20; border-color: #7a7a7a; border-radius: 0.25rem; outline: 0; box-shadow: 0 0 0 0.3rem rgba(180, 180, 180, 0.8);") }}</div><br>
+            {% for error in form.surname.errors %}
+                <div class="alert alert-danger" role="alert">
+                    {{ error }}
+                </div>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.name.label }}<br>
+            <div style=""> {{ form.name(class="form-control", type="Имя", style="color: #000000; background-color: #559a20; border-color: #7a7a7a; border-radius: 0.25rem; outline: 0; box-shadow: 0 0 0 0.3rem rgba(180, 180, 180, 0.8);") }}</div><br>
+            {% for error in form.name.errors %}
+                <div class="alert alert-danger" role="alert">
+                    {{ error }}
+                </div>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.patronymic.label }}<br>
+            <div style=""> {{ form.patronymic(class="form-control", type="Отчество", style="color: #000000; background-color: #559a20; border-color: #7a7a7a; border-radius: 0.25rem; outline: 0; box-shadow: 0 0 0 0.3rem rgba(180, 180, 180, 0.8);") }}</div><br>
+            {% for error in form.patronymic.errors %}
+                <div class="alert alert-danger" role="alert">
+                    {{ error }}
+                </div>
+            {% endfor %}
+        </p>
+
+        <p>
+            {{ form.login.label }}<br>
+            <div style=""> {{ form.login(class="form-control", type="Отчество", style="color: #000000; background-color: #559a20; border-color: #7a7a7a; border-radius: 0.25rem; outline: 0; box-shadow: 0 0 0 0.3rem rgba(180, 180, 180, 0.8);") }}</div><br>
+            {% for error in form.login.errors %}
+                <div class="alert alert-danger" role="alert">
+                    {{ error }}
+                </div>
+            {% endfor %}
+        </p>
+
+        <p>{{ form.remember_me(class="custom-checkbox", type="checkbox") }} {{ form.remember_me.label }}</p>
+        <p>{{ form.submit(type="submit", class="btn btn-primary", style="color: #000000; background-color: #559a20; border-color: #7a7a7a; border-radius: 0.25rem; outline: 0; box-shadow: 0 0 0 0.3rem rgba(180, 180, 180, 0.8);") }}</p>
+        <div>{{ message }}</div>
+    </form>
+{% endblock %}

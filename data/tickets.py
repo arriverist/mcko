@@ -7,7 +7,7 @@ from datetime import datetime
 
 
 class Ticket(SqlAlchemyBase, UserMixin, SerializerMixin):
-    __tablename__ = 'tickets'
+    __tablename__ = 'tasks'
 
     id = sqlalchemy.Column(sqlalchemy.Integer, primary_key=True, autoincrement=True)
     name = sqlalchemy.Column(sqlalchemy.String, nullable=True)

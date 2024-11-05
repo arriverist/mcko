@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% for class in classes%}
+    <a href={{class[0]}}><button style="width: 300px; height: 200px">{{class[1]}}</button></a>
+{% endfor %}
+{% endblock %}
